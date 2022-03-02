@@ -12,6 +12,14 @@
     "express",
     "mongo"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "dsolerh",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsolerh/gql-node-express-mongo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dsolerh/gql-node-express-mongo/issues"
+  },
+  "homepage": "https://github.com/dsolerh/gql-node-express-mongo#readme"
 }
