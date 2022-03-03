@@ -4,7 +4,9 @@
   "description": "a graphql server with node express and mongo",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "start:dev": "nodemon app"
   },
   "keywords": [
     "graphql",
@@ -21,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/dsolerh/gql-node-express-mongo/issues"
   },
-  "homepage": "https://github.com/dsolerh/gql-node-express-mongo#readme"
+  "homepage": "https://github.com/dsolerh/gql-node-express-mongo#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
