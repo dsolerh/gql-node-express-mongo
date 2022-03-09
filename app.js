@@ -1,6 +1,8 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
+const { config } = require("dotenv");
+config()
 
 const app = express();
 app.use(express.json());
