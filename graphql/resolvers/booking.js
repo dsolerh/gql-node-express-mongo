@@ -5,17 +5,23 @@ const User = require("../../models/user.models");
 const { transformBooking, transformEvent } = require("./merge");
 
 module.exports = {
-  bookings: async () => {
+  bookings: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Access denied");
+    }
     const bookings = await Booking.find();
     return bookings.map(transformBooking);
   },
-  bookEvent: async (args) => {
+  bookEvent: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Access denied");
+    }
     try {
       const event = await Event.findOne({ _id: args.eventId });
       if (!event) {
         throw new Error("Event not found");
       }
-      const user = await User.findById("62218297db07ac2b51e71d4c");
+      const user = await User.findById(req.userId);
       if (!user) {
         throw new Error("User not found");
       }
@@ -29,7 +35,10 @@ module.exports = {
       throw error;
     }
   },
-  cancelBooking: async (args) => {
+  cancelBooking: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Access denied");
+    }
     const booking = await Booking.findByIdAndDelete(args.bookingId); // cambiar a otra forma de cancelacion
     if (!booking) {
       throw new Error("Booking not found");

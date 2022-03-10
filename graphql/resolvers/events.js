@@ -8,9 +8,12 @@ module.exports = {
     const events = await Event.find();
     return events.map(transformEvent);
   },
-  createEvent: async (args) => {
+  createEvent: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Access denied")
+    }
     try {
-      const user = await User.findById("62218297db07ac2b51e71d4c");
+      const user = await User.findById(req.userId);
       if (!user) {
         throw new Error("User not found");
       }
@@ -18,7 +21,7 @@ module.exports = {
       const event = await Event.create({
         ...args.eventInput,
         date: toISOString(args.eventInput.date),
-        creator: "62218297db07ac2b51e71d4c",
+        creator: user,
       });
 
       user.createdEvents.push(event._id);
